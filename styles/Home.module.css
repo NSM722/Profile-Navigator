@@ -1,0 +1,31 @@
+.title {
+  font-size: 2.6rem;
+  margin: .7em;
+  border-bottom: 3px solid #565252;
+  color: rgb(0, 72, 255);
+  text-shadow: 0 0 1px #000;
+}
+
+.grid__wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(300px, 1fr));
+  grid-template-rows: auto;
+}
+
+.card {
+  padding: 2em 5em;
+  background-color: #ccc;
+  display: block;
+  margin: 3em 4em;
+  border-left: 9px solid #fff;
+}
+
+.card__title {
+  font-size: 1.1rem;
+}
+
+.card:hover,
+.card:focus {
+  border-left: 8px solid rgb(41, 183, 41);
+  cursor: pointer;
+}
