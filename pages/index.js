@@ -1,11 +1,22 @@
 import Head from 'next/head'
-import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
+import Link from 'next/link'
 
 const inter = Inter({ subsets: ['latin'] })
 
-export default function Home({ users }) {
+export const getStaticProps = async () => {
+  const response = await fetch('https://jsonplaceholder.typicode.com/users');
+  const customers = await response.json();
+  return { 
+    props: { 
+      customers 
+    } 
+  };
+};
+ 
+
+export default function Home({ customers }) {
   return (
     <>
       <Head>
@@ -18,13 +29,16 @@ export default function Home({ users }) {
         <h1 className={styles.title}>Customers</h1>
         <section className={styles.grid__wrapper}>
         {
-          users.map(user => (
-            <div 
-              key={user.id}
+          customers.map(customer => (
+            <Link 
+              href={`/customers/${customer.id}`}
+              key={customer.id}
               className={styles.card}
             >
-              <h2 className={styles.card__title}>{user.name}</h2>
-            </div>
+              <h2 className={styles.card__title}>{customer.name}</h2>
+              <p>{customer.email}</p>
+              <p>{customer.address.city}</p>
+            </Link>
           )) 
         }
         </section>
@@ -33,13 +47,12 @@ export default function Home({ users }) {
   )
 }
 
-export const getStaticProps = async () => {
-  const response = await fetch('https://jsonplaceholder.typicode.com/users');
-  const data = await response.json();
-  return { 
-    props: { 
-      users: data 
-    } 
-  };
-};
- 
+// export async function getServerSideProps() {
+//   const response = await fetch('https://jsonplaceholder.typicode.com/users')
+//   const customers = await response.json()
+//   return {
+//     // pass the props you want to pass to your component above
+//     props: { customers }
+//   }
+// }
+
