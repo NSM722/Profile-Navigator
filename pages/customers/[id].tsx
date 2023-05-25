@@ -5,6 +5,7 @@ import { SiSimilarweb } from 'react-icons/si'
 import { MdAssuredWorkload } from 'react-icons/md'
 import { RiDoubleQuotesL } from 'react-icons/ri'
 import { RiDoubleQuotesR } from 'react-icons/ri'
+import { GetStaticProps, GetStaticPaths } from 'next';
 
 
 
@@ -14,7 +15,7 @@ import { RiDoubleQuotesR } from 'react-icons/ri'
  * the routes & html page for each customer
  */
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   // without destructuring(data) format
   const response = await fetch('https://jsonplaceholder.typicode.com/users')
   const data = await response.json()
@@ -43,7 +44,7 @@ export const getStaticPaths = async () => {
  * context - is an automatic object accepted as 
  * an argument in this function
  */
-export const getStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context) => {
   // get the id from the context object
   const id = context?.params.id
 

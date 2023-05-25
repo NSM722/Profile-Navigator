@@ -39,8 +39,35 @@ To learn more about Next.js, take a look at the following resources:
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
+### Convert to `Typescript`
+
+To get started, create an empty tsconfig.json file in the root of your project:
+
+```js
+touch tsconfig.json
+```
+
+Start the development server by running `npm run dev`
+
+Next.js will automatically detect TypeScript usage and install the required packages
+
+Follow the steps at [convert your app to Typescript](https://nextjs.org/learn/excel/typescript/create-tsconfig "read docs")
+
 ## Deploy on Vercel
 
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+### How to fix cannot find module css/scss
+
+[Declare a new module](https://linguinecode.com/post/how-to-fix-cannot-find-module-css-scss-nextjs "follow link") in the `next-env.d.ts file`
+
+```js
+- error ./pages/_app.tsx:2:0
+Module not found: Can't resolve '@/styles/globals.css'
+  1 | import 'bootstrap/dist/css/bootstrap.css';
+> 2 | import '@/styles/globals.css'
+https://nextjs.org/docs/messages/module-not-found
+
+```
