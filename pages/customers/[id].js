@@ -62,7 +62,7 @@ export const getStaticProps = async (context) => {
 const CustomerProfile = ({ customer }) => {
   return (
     <section className="container mt-4 border border-dark p-4 rounded-3">
-      <h3 className="display-3 text-decoration-underline">{customer.name} Profile</h3>
+      <h3 className="display-3 text-decoration-underline">{customer.name}'s Profile</h3>
       <article className="display-6">
         <p> <AiOutlineUser /> {customer.username}</p>
         <p> <BsTelephoneInbound /> {customer.phone}</p>
