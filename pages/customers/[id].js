@@ -1,4 +1,12 @@
 import React from 'react'
+import { AiOutlineUser } from 'react-icons/ai'
+import { BsTelephoneInbound } from 'react-icons/bs'
+import { SiSimilarweb } from 'react-icons/si'
+import { MdAssuredWorkload } from 'react-icons/md'
+import { RiDoubleQuotesL } from 'react-icons/ri'
+import { RiDoubleQuotesR } from 'react-icons/ri'
+
+
 
 
 /**
@@ -56,11 +64,11 @@ const CustomerProfile = ({ customer }) => {
     <section className="container mt-4 border border-dark p-4 rounded-3">
       <h3 className="display-3 text-decoration-underline">{customer.name} Profile</h3>
       <article className="display-6">
-        <p>{customer.username}</p>
-        <p>{customer.phone}</p>
-        <p>{customer.website}</p>
-        <p>{customer.company.name}</p>
-        <p>{customer.company.bs}</p>
+        <p> <AiOutlineUser /> {customer.username}</p>
+        <p> <BsTelephoneInbound /> {customer.phone}</p>
+        <p> <SiSimilarweb /> {customer.website}</p>
+        <p><MdAssuredWorkload /> {customer.company.name}</p>
+        <p className="fst-italic text-primary fw-light"><RiDoubleQuotesL /> {customer.company.bs} <RiDoubleQuotesR /></p>
       </article>
     </section>
   )

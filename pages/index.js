@@ -1,7 +1,10 @@
 import Head from 'next/head'
 import { Inter } from 'next/font/google'
-import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
+import { HiOutlineMail } from 'react-icons/hi'
+import { GoLocation } from 'react-icons/go'
+import { ImProfile } from 'react-icons/im'
+import { GiClick } from 'react-icons/gi'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -38,13 +41,13 @@ export default function Home({ customers }) {
               <div className="col-sm-6">
                 <div className="card border-secondary text-dark bg-light">
                   <div className="card-body">
-                    <h5 className="card-title">{customer.name}</h5>
-                    <p className="card-text">{customer.email}</p>
-                    <p className="card-text">{customer.address.city}</p>
+                    <h5 className="card-title"><ImProfile /> {customer.name}</h5>
+                    <p className="card-text"><HiOutlineMail /> {customer.email}</p>
+                    <p className="card-text"><GoLocation /> {customer.address.city}</p>
                     <Link href={`/customers/${customer.id}`} 
                       className="btn btn-primary"
                       key={customer.id}
-                    >Visit Profile</Link>
+                    ><GiClick /> Visit Profile</Link>
                   </div>
                 </div>
               </div>
