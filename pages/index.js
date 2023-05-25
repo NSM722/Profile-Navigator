@@ -25,23 +25,32 @@ export default function Home({ customers }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={`${inter.className}`}>
-        <h1 className={styles.title}>Customers</h1>
-        <section className={styles.grid__wrapper}>
-        {
-          customers.map(customer => (
-            <Link 
-              href={`/customers/${customer.id}`}
-              key={customer.id}
-              className={styles.card}
-            >
-              <h2 className={styles.card__title}>{customer.name}</h2>
-              <p>{customer.email}</p>
-              <p>{customer.address.city}</p>
-            </Link>
-          )) 
-        }
-        </section>
+      <nav class="navbar  navbar-dark bg-primary fixed-top mb-5">
+        <div class="container-fluid">
+          <span class="navbar-brand mb-0 h1 fw-bolder">Profile Navigator</span>
+        </div>
+      </nav>
+      <main className={`${inter.className} my-5 px-4`}>
+      <h1 className="fw-bold border-bottom border-dark pt-4">Customers</h1>
+      <div className="row row-cols-1 row-cols-md-3 g-4 pt-4">
+          {
+            customers.map(customer => (
+              <div className="col-sm-6">
+                <div className="card border-secondary text-dark bg-light">
+                  <div className="card-body">
+                    <h5 className="card-title">{customer.name}</h5>
+                    <p className="card-text">{customer.email}</p>
+                    <p className="card-text">{customer.address.city}</p>
+                    <Link href={`/customers/${customer.id}`} 
+                      className="btn btn-primary"
+                      key={customer.id}
+                    >Visit Profile</Link>
+                  </div>
+                </div>
+              </div>
+            ))
+          }
+      </div>
       </main>
     </>
   )

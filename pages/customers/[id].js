@@ -1,5 +1,6 @@
 import React from 'react'
 
+
 /**
  * This function runs at build time to create 
  * the routes & html page for each customer
@@ -52,15 +53,16 @@ export const getStaticProps = async (context) => {
 
 const CustomerProfile = ({ customer }) => {
   return (
-    <>
-      <h3>Customer Profile Page</h3>
-      <p>{customer.name}</p>
-      <p>{customer.username}</p>
-      <p>{customer.phone}</p>
-      <p>{customer.website}</p>
-      <p>{customer.company.name}</p>
-      <p>{customer.company.bs}</p>
-    </>
+    <section className="container mt-4 border border-dark p-4 rounded-3">
+      <h3 className="display-3 text-decoration-underline">{customer.name} Profile</h3>
+      <article className="display-6">
+        <p>{customer.username}</p>
+        <p>{customer.phone}</p>
+        <p>{customer.website}</p>
+        <p>{customer.company.name}</p>
+        <p>{customer.company.bs}</p>
+      </article>
+    </section>
   )
 }
 
