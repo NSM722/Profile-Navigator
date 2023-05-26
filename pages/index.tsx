@@ -1,21 +1,8 @@
 import Head from 'next/head'
-import { Inter } from 'next/font/google'
 import HomePage from '../src/components/home/Home';
 import { GetServerSideProps } from 'next';
+import Customers from '../src/types/Customers';
 
-
-
-const inter = Inter({ subsets: ['latin'] })
-
-// export const getStaticProps = async () => {
-//   const response = await fetch('https://jsonplaceholder.typicode.com/users');
-//   const customers = await response.json();
-//   return { 
-//     props: { 
-//       customers 
-//     } 
-//   };
-// };
 
 export const getServerSideProps: GetServerSideProps = async () => {
   const response = await fetch('https://jsonplaceholder.typicode.com/users')
@@ -26,8 +13,7 @@ export const getServerSideProps: GetServerSideProps = async () => {
   }
 }
  
-
-export default function Home({ customers }) {
+const Home: React.FC<{customers: Customers[]}> = ({ customers }) => {
   return (
     <>
       <Head>
@@ -41,4 +27,5 @@ export default function Home({ customers }) {
   )
 }
 
+export default Home
 
