@@ -71,3 +71,31 @@ Module not found: Can't resolve '@/styles/globals.css'
 https://nextjs.org/docs/messages/module-not-found
 
 ```
+
+### `getStaticProps` OR `getServerSideProps`
+
+The choice to use either of the mentioned functions above depends on the requirements of the application and the nature of the data being fetched
+
+### A simple distinction
+
+**`getServerSideProps`**: Use getServerSideProps when you need to fetch data on each request or when the data is frequently updated
+
+This function runs on the server-side and generates the page on each request, providing fresh data every time
+
+It's useful when you have dynamic data that needs to be fetched at the time of the request, such as personalized content, user-specific data, or real-time data.
+
+**`getStaticProps`**: Use getStaticProps when you have data that can be pre-rendered at build time and does not change frequently
+
+This function runs at build time and fetches data to generate static HTML pages
+
+The generated HTML pages can be cached and served to multiple users, improving performance.
+
+It's suitable for content that does not require frequent updates like:
+
+- blog posts
+- marketing pages
+- OR static data
+
+**_Conclusion_**
+
+Choose `getServerSideProps` for dynamic data that needs to be fetched on each request and `getStaticProps` for pre-rendering static data that doesn't change often and can be cached for improved performance
