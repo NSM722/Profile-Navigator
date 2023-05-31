@@ -2,7 +2,7 @@
 import React from 'react'
 
 // ** next.js
-import { GetStaticProps, GetStaticPaths } from 'next';
+import { GetStaticProps, GetStaticPaths, GetStaticPropsContext, PreviewData } from 'next';
 
 // ** react-icons
 import { AiOutlineUser } from 'react-icons/ai'
@@ -14,7 +14,12 @@ import { RiDoubleQuotesR } from 'react-icons/ri'
 
 // ** type
 import Customers from '../../src/types/Customers';
+import { ParsedUrlQuery } from 'querystring';
 
+// ** Customer Profile Type
+interface CustomerProfileProps {
+  customer: Customers;
+}
 
 /**
  * This function runs at build time to create 
@@ -46,9 +51,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
  * context - is an automatic object accepted as 
  * an argument in this function
  */
-export const getStaticProps: GetStaticProps = async (context) => {
+export const getStaticProps: GetStaticProps = async (context: GetStaticPropsContext<ParsedUrlQuery, PreviewData> ) => {
   // get the id from the context object
-  const id = context?.params.id
+  const id = context?.params?.id ?? '';
 
   // Fetching a single id for every request
   const response = await fetch(`https://jsonplaceholder.typicode.com/users/${id}`)
@@ -60,11 +65,11 @@ export const getStaticProps: GetStaticProps = async (context) => {
   }
 }
 
-const CustomerProfile = ({ customer }) => {
+const CustomerProfile = ({ customer }: CustomerProfileProps) => {
   return (
     <div className="card mt-4 text-dark border border-2 border-secondary shadow p-3 mb-5 bg-body rounded">
       <div className="card-body px-4 py-6 fs-5">
-        <h5 className="card-title text-decoration-underline fs-2">{customer.name}'s Profile</h5>
+        <h5 className="card-title border-bottom border-primary border-2 fs-2">{customer.name}</h5>
         <h6 className="card-subtitle mb-2 fs-3"><AiOutlineUser /> {customer.username}</h6>
         <p className="card-text"><BsTelephoneInbound /> {customer.phone}</p>
         <p className="card-text"><MdAssuredWorkload /> {customer.company.name}</p>
