@@ -3,6 +3,7 @@ import React from 'react'
 
 // ** next.js
 import { GetStaticProps, GetStaticPaths, GetStaticPropsContext, PreviewData } from 'next';
+import Link from 'next/link';
 
 // ** react-icons
 import { AiOutlineUser } from 'react-icons/ai'
@@ -11,6 +12,7 @@ import { SiSimilarweb } from 'react-icons/si'
 import { MdAssuredWorkload } from 'react-icons/md'
 import { RiDoubleQuotesL } from 'react-icons/ri'
 import { RiDoubleQuotesR } from 'react-icons/ri'
+import { MdKeyboardBackspace } from 'react-icons/md'
 
 // ** type
 import Customers from '../../src/types/Customers';
@@ -67,16 +69,19 @@ export const getStaticProps: GetStaticProps = async (context: GetStaticPropsCont
 
 const CustomerProfile = ({ customer }: CustomerProfileProps) => {
   return (
-    <div className="card mt-4 text-dark border border-2 border-secondary shadow p-3 mb-5 bg-body rounded">
-      <div className="card-body px-4 py-6 fs-5">
-        <h5 className="card-title border-bottom border-primary border-2 fs-2">{customer.name}</h5>
-        <h6 className="card-subtitle mb-2 fs-3"><AiOutlineUser /> {customer.username}</h6>
-        <p className="card-text"><BsTelephoneInbound /> {customer.phone}</p>
-        <p className="card-text"><MdAssuredWorkload /> {customer.company.name}</p>
-        <a href="#" className="card-link"><SiSimilarweb /> {customer.website}</a>
-        <p className="card-text fst-italic text-primary fw-light"><RiDoubleQuotesL /> {customer.company.bs} <RiDoubleQuotesR /></p>
+    <>
+      <div className="card mt-4 text-dark border border-2 border-secondary shadow p-3 mb-5 bg-body rounded">
+        <div className="card-body px-4 py-6 fs-5">
+          <h5 className="card-title border-bottom border-primary border-2 fs-2">{customer.name}</h5>
+          <h6 className="card-subtitle mb-2 fs-3"><AiOutlineUser /> {customer.username}</h6>
+          <p className="card-text"><BsTelephoneInbound /> {customer.phone}</p>
+          <p className="card-text"><MdAssuredWorkload /> {customer.company.name}</p>
+          <a href="#" className="card-link"><SiSimilarweb /> {customer.website}</a>
+          <p className="card-text fst-italic text-primary fw-light"><RiDoubleQuotesL /> {customer.company.bs} <RiDoubleQuotesR /></p>
+        </div>
       </div>
-    </div>
+      <h6><Link href="/" className="link-primary fw-bolder"><MdKeyboardBackspace /> Return to Home Page</Link></h6>
+    </>
   )
 }
 
