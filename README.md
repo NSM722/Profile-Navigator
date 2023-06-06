@@ -98,6 +98,8 @@ Choose `getServerSideProps` for dynamic data that needs to be fetched on each re
 
 [Manual setup of the cypress package and writing tests](https://nextjs.org/docs/pages/building-your-application/optimizing/testing#creating-your-first-cypress-e2e-test "read next.js docs")
 
+[Cypress End to End Testing Framwork Youtube Tutorial LInk](https://www.youtube.com/playlist?list=PLzDWIPKHyNmK9NX9_ng2IdrkEr8L4WwB0)
+
 ### Important --> Running your Cypress Tests
 
 Since Cypress E2E tests are testing a real Next.js application they require the Next.js server to be running prior to starting Cypress
