@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "cypress": "cypress open"
   },
   "dependencies": {
     "bootstrap": "^5.2.3",
@@ -20,6 +21,7 @@
   "devDependencies": {
     "@next/eslint-plugin-next": "^13.4.4",
     "@types/node": "^20.2.4",
-    "@types/react": "18.2.7"
+    "@types/react": "18.2.7",
+    "cypress": "^12.13.0"
   }
 }

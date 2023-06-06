@@ -1,10 +1,11 @@
 # Profile Navigator
 
 A simple dashboard with only 2 routes:
- - Home
-   - Renders all the customers
- - Customer profile
-   - Renders individual customer details 
+
+- Home
+  - Renders all the customers
+- Customer profile
+  - Renders individual customer details
 
 Data fetched from [Free fake API{JSON} placeholder](https://jsonplaceholder.typicode.com/users "read docs")
 
@@ -90,3 +91,67 @@ It's suitable for content that does not require frequent updates like:
 **_Conclusion_**
 
 Choose `getServerSideProps` for dynamic data that needs to be fetched on each request and `getStaticProps` for pre-rendering static data that doesn't change often and can be cached for improved performance
+
+## Testing with Cypress
+
+[Cypress interacting with elements](https://docs.cypress.io/guides/core-concepts/interacting-with-elements "read docs")
+
+[Manual setup of the cypress package and writing tests](https://nextjs.org/docs/pages/building-your-application/optimizing/testing#creating-your-first-cypress-e2e-test "read next.js docs")
+
+### Important --> Running your Cypress Tests
+
+Since Cypress E2E tests are testing a real Next.js application they require the Next.js server to be running prior to starting Cypress
+
+We recommend running your tests against your production code to more closely resemble how your application will behave
+
+Run `npm run build` and `npm run start,` then run `npm run cypress -- --e2e` in **another terminal window** to start Cypress and run your E2E testing suite
+
+Explanation of the test in `app.cy.ts`
+
+```js
+describe('Navigation', () => {
+  // starts from the home/index page
+  it('should navigate to the customer profile page', () => {
+    cy.visit('http://localhost:3000/');
+
+    // capture the dynamic [id] parameter from the URL
+    cy.get('a[href*="/customers/"]').first().invoke('attr', 'href').then((href) => {
+
+      /**
+       * first get the href attribute
+       * extract the id by splitting(/) 
+       * & getting the last segment
+       * 
+       */
+      const customerId = href?.split('/').pop();
+      /**
+       * first() Get the first DOM element within a set of DOM elements
+       * {force: true} forces the click event
+       */
+      cy.get('a[href*="/customers/"]').first().click({force: true});
+
+      // assert the URL contains the expected pattern
+      cy.url().should('include', `customers/${customerId}`);
+
+      // assert the following h6 heading is contained in the page
+      cy.get('h6').contains('Return to Home Page');
+    });
+  });
+});
+```
+
+```js
+const customerId = href?.split('/').pop();
+```
+
+The `split('/')`method splits the href string into an array using the `delimiter '/'`
+
+Then, the `pop()` method retrieves the last element from the array, which in this case is the customer ID
+
+```js
+cy.get('a[href*="/customers/"]').first().click();
+```
+
+In the above line of code, Cypress is locating the **first anchor element (a)** that has a `href attribute` containing `"/customers/"`
+
+It then triggers a click on that element
